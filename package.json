@@ -1,11 +1,14 @@
 {
   "name": "jacky-launcher",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "jacky-launcher is supposed to be an JavaScript cross-platform Launcher. Like Launchy for Windows and Alfred 2 for Mac OS. I want to get jacky as comfortable as possible and with a easy way to implement own NodeJS Plugins.",
   "main": "index.html",
   "scripts": {
     "build": "tsc -p src/",
     "build:watch": "tsc -p src/ -w",
+    "test:once": "karma start karma.conf.js --single-run",
+    "clean:coverage": "rm -r ./coverage",
+    "coverage:lcov": "node_modules/.bin/remap-istanbul -i ./coverage/coverage-final.json -o ./coverage/lcov.info -t lcovonly",
     "lint": "tslint ./src/**/*.ts -t verbose --exclude ./src/app/resources/lib/**/*.ts"
   },
   "repository": {
@@ -27,10 +30,17 @@
   },
   "homepage": "https://github.com/Sly321/jacky-launcher#readme",
   "devDependencies": {
+    "@types/jasmine": "^2.5.47",
     "@types/node": "^7.0.18",
     "gulp": "^3.9.1",
     "gulp-sourcemaps": "^2.6.0",
     "gulp-typescript": "^3.1.6",
+    "jasmine-core": "^2.6.2",
+    "karma": "^1.7.0",
+    "karma-cli": "^1.0.1",
+    "karma-coverage": "^1.1.1",
+    "karma-jasmine": "^1.1.0",
+    "karma-jasmine-html-reporter": "^0.2.2",
     "run-sequence": "^1.2.2",
     "tslint": "^5.2.0",
     "typescript": "^2.3.2"
