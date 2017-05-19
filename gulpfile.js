@@ -21,12 +21,12 @@ gulp.task('compile-test', function () {
 
 gulp.task('compile-src', function () {
 	var tsProject = tsc.createProject('./src/tsconfig.json');
-    return gulp.src(['./src/app/**/*.ts'])
+    return gulp.src(['./src/**/*.ts'])
 		.pipe(sourcemaps.init())
         .pipe(tsProject())
         .on('error', util.log)
 		.pipe(sourcemaps.write('.'))
-        .pipe(gulp.dest('./src/app/'));
+        .pipe(gulp.dest('./src/'));
 });
 
 gulp.task('pack', ['pack-src']);
@@ -35,5 +35,5 @@ gulp.task('pack-src', function () {
 });
 
 gulp.task('default', function () {
-    runSequence('pack');
+    runSequence('compile-ts', 'pack');
 });
