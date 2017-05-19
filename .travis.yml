@@ -1,0 +1,30 @@
+addons:
+  code_climate:
+    repo_token: a95ae6e9df00c8a9ee0393e793e8ee26e496884d6b74d2465428e6f33f5dc929
+dist: trusty
+sudo: required
+language: node_js
+node_js:
+  - "6"
+os:
+  - linux
+env:
+  global:
+    - DBUS_SESSION_BUS_ADDRESS=/dev/null
+    - DISPLAY=:99.0
+    - CHROME_BIN=chromium-browser
+before_script:
+  - sh -e /etc/init.d/xvfb start
+  - npm install -g gulp
+  - npm install -g bower
+install:
+  - npm install
+script:
+  - gulp
+  - npm run lint
+  - npm run test:once
+  - npm run e2e
+  - npm run coverage:lcov
+after_success:
+  - npm install -g codeclimate-test-reporter
+  - codeclimate-test-reporter < coverage/lcov.info
