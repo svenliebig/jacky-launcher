@@ -1,6 +1,6 @@
 {
   "name": "jacky-launcher",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "jacky-launcher is supposed to be an JavaScript cross-platform Launcher. Like Launchy for Windows and Alfred 2 for Mac OS. I want to get jacky as comfortable as possible and with a easy way to implement own NodeJS Plugins.",
   "main": "index.html",
   "scripts": {
@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/Sly321/jacky-launcher#readme",
   "devDependencies": {
-    "gulp": "^3.9.1"
+    "gulp": "^3.9.1",
+    "run-sequence": "^1.2.2"
   }
 }
