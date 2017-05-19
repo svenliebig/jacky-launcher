@@ -1,9 +1,11 @@
 {
   "name": "jacky-launcher",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "jacky-launcher is supposed to be an JavaScript cross-platform Launcher. Like Launchy for Windows and Alfred 2 for Mac OS. I want to get jacky as comfortable as possible and with a easy way to implement own NodeJS Plugins.",
   "main": "index.html",
   "scripts": {
+    "start": "gulp && npm run start-app",
+    "start-app": "electron src/",
     "build": "tsc -p src/",
     "build:watch": "tsc -p src/ -w",
     "test:once": "karma start karma.conf.js --single-run",
