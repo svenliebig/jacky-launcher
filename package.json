@@ -1,0 +1,30 @@
+{
+  "name": "jacky-launcher",
+  "version": "0.1.0",
+  "description": "jacky-launcher is supposed to be an JavaScript cross-platform Launcher. Like Launchy for Windows and Alfred 2 for Mac OS. I want to get jacky as comfortable as possible and with a easy way to implement own NodeJS Plugins.",
+  "main": "index.html",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Sly321/jacky-launcher.git"
+  },
+  "keywords": [
+    "launcher",
+    "wox",
+    "alfred",
+    "alfred2",
+    "windows",
+    "macos"
+  ],
+  "author": "Sven Liebig",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Sly321/jacky-launcher/issues"
+  },
+  "homepage": "https://github.com/Sly321/jacky-launcher#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
