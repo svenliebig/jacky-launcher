@@ -20,11 +20,12 @@ before_script:
 install:
   - npm install
 script:
-  - gulp
-  - npm run lint
+  - npm build
+  - npm test
+#  - npm run lint
 #  - npm run test:once
 #  - npm run e2e
-  - npm run coverage:lcov
+  - npm run coverage
 after_success:
   - npm install -g codeclimate-test-reporter
   - codeclimate-test-reporter < coverage/lcov.info
