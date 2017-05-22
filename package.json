@@ -1,10 +1,10 @@
 {
   "name": "jacky-launcher",
-  "version": "0.1.19",
+  "version": "0.1.20",
   "description": "jacky-launcher is supposed to be an JavaScript cross-platform Launcher. Like Launchy for Windows and Alfred 2 for Mac OS. I want to get jacky as comfortable as possible and with a easy way to implement own NodeJS Plugins.",
   "main": "app/background.js",
   "scripts": {
-    "postinstall": "install-app-deps && bower install log4javascript",
+    "postinstall": "install-app-deps",
     "build": "gulp build",
     "prerelease": "gulp build --env=production",
     "release": "build",
@@ -55,6 +55,7 @@
     "rollup": "^0.41.4",
     "rollup-plugin-istanbul": "^1.1.0",
     "source-map-support": "^0.4.11",
-    "spectron": "^3.6.0"
+    "spectron": "^3.6.0",
+    "winston": "^2.3.1"
   }
 }
