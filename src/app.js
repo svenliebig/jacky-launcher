@@ -7,7 +7,7 @@ import './helpers/external_links.js';
 // All stuff below is just to show you how it works. You can delete all of it.
 import { remote } from 'electron';
 import jetpack from 'fs-jetpack';
-import { greet } from './hello_world/hello_world';
+import { Launcher } from './launcher/launcher';
 import env from './env';
 
 const app = remote.app;
@@ -23,8 +23,19 @@ const osMap = {
   linux: 'Linux',
 };
 
+const commandLine = document.querySelector('input');
+
+/**
 document.querySelector('#greet').innerHTML = greet();
 document.querySelector('#os').innerHTML = osMap[process.platform];
 document.querySelector('#author').innerHTML = manifest.author;
 document.querySelector('#env').innerHTML = env.name;
-document.querySelector('#electron-version').innerHTML = process.versions.electron;
+document.querySelector('#electron-version').innerHTML = process.versions.electron; */
+
+let launcher = new Launcher(app, commandLine);
+
+app.window.on('show', () => {
+	console.log('mainWindow > event > show');
+	commandLine.focus();
+	commandLine.setSelectionRange(0, commandLine.value.length);
+});

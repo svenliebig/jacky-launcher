@@ -3,7 +3,7 @@
 // Can be used for more than one window, just construct many
 // instances of it and give each different name.
 
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, screen, globalShortcut } from 'electron';
 import jetpack from 'fs-jetpack';
 
 export default (name, options) => {
@@ -11,8 +11,7 @@ export default (name, options) => {
   const stateStoreFile = `window-state-${name}.json`;
   const defaultSize = {
     width: options.width,
-    height: options.height,
-	frame: options.frame
+    height: options.height
   };
   let state = {};
   let win;
@@ -25,6 +24,7 @@ export default (name, options) => {
       // For some reason json can't be read (might be corrupted).
       // No worries, we have defaults.
     }
+	console.log('using default size!');
     return Object.assign({}, defaultSize, restoredState);
   };
 
@@ -67,11 +67,48 @@ export default (name, options) => {
   };
 
   const saveState = () => {
+
+    // Unregister all shortcuts.
+    globalShortcut.unregisterAll()
+
     if (!win.isMinimized() && !win.isMaximized()) {
       Object.assign(state, getCurrentPosition());
     }
     userDataDir.write(stateStoreFile, state, { atomic: true });
   };
+
+  const registerShortcuts = () => {
+	  // TODO implement method
+	  const ret = globalShortcut.register('CommandOrControl+X', () => {
+	    console.log('CommandOrControl+X is pressed');
+		if(win.isVisible()) {
+			win.hide();
+		} else {
+			win.show();
+		}
+	  })
+
+	  if (!ret) {
+	    console.log('registration failed')
+	  }
+
+	  // Check whether a shortcut is registered.
+	  console.log(globalShortcut.isRegistered('Esc'));
+
+	  const retEscape = globalShortcut.register('Esc', () => {
+	    console.log('Esc is pressed');
+		win.hide();
+	  })
+
+	  if (!retEscape) {
+	    console.log('registration failed')
+	  }
+
+	  // Check whether a shortcut is registered.
+	  console.log(globalShortcut.isRegistered('Esc'));
+  };
+
+  registerShortcuts();
 
   state = ensureVisibleOnSomeDisplay(restore());
 

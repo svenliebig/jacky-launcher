@@ -22,6 +22,8 @@ const setApplicationMenu = () => {
   Menu.setApplicationMenu(Menu.buildFromTemplate(menus));
 };
 
+let mainWindow;
+
 // Save userData in separate folders for each environment.
 // Thanks to this you can use production and development versions of the app
 // on same machine like those are two separate apps.
@@ -33,10 +35,18 @@ if (env.name !== 'production') {
 app.on('ready', () => {
   setApplicationMenu();
 
-  const mainWindow = createWindow('main', {
-    width: 1000,
-    height: 600,
-	frame: false
+  mainWindow = createWindow('main', {
+    width: 700,
+    height: 200,
+	frame: false,
+	skipTaskbar: false,
+	fullscreen: false,
+	transparent: true,
+	movable: true,
+	resizable: false,
+	alwaysOnTop: true
+	// macos
+	//titleBarStyle: 'hidden-inset'
   });
 
   mainWindow.loadURL(url.format({
@@ -44,6 +54,13 @@ app.on('ready', () => {
     protocol: 'file:',
     slashes: true,
   }));
+
+  mainWindow.on('blur', () => {
+	 console.log('mainwindow > event > onblur');
+	 mainWindow.hide();
+  });
+
+  app.window = mainWindow;
 
   if (env.name === 'development') {
     mainWindow.openDevTools();
