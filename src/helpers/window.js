@@ -12,6 +12,7 @@ export default (name, options) => {
   const defaultSize = {
     width: options.width,
     height: options.height,
+	frame: options.frame
   };
   let state = {};
   let win;
