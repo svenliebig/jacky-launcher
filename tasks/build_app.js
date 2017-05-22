@@ -25,6 +25,13 @@ gulp.task('less', () => {
   .pipe(gulp.dest(destDir.path('stylesheets')));
 });
 
+
+gulp.task('images', () => {
+  return gulp.src(srcDir.path('src/resources/**/*.png'))
+  .pipe(plumber())
+  .pipe(gulp.dest(destDir.path('images')));
+});
+
 gulp.task('environment', () => {
   const configFile = `config/env_${utils.getEnvName()}.json`;
   projectDir.copy(configFile, destDir.path('env.json'), { overwrite: true });
@@ -48,4 +55,4 @@ gulp.task('watch', () => {
   }));
 });
 
-gulp.task('build', ['bundle', 'less', 'environment']);
+gulp.task('build', ['bundle', 'less', 'environment', 'images']);
