@@ -1,4 +1,10 @@
-// Here is the starting point for your application code.
+// log4j
+import './lib/log4javascript/log4javascript.js';
+
+const log = log4javascript.getDefaultLogger();
+log.removeAllAppenders();
+log.addAppender(new log4javascript.BrowserConsoleAppender());
+log.info("message[, message2, ... ][, exception]");
 
 // Small helpers you might want to keep
 import './helpers/context_menu.js';
