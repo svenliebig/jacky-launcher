@@ -6,7 +6,7 @@ html, body {
 }
 
 body {
-  display: flex;
+  display: block;
   justify-content: center;
   align-items: center;
   font-family: sans-serif;
@@ -14,14 +14,40 @@ body {
   background: rgba(255, 255, 255, 0.5);
 
   input {
-		border: none;
-		width: 600px;
-		height: 100px;
-		box-shadow: none;
-		background: none;
-		font-size: 38px;
-		outline: none;
-		background: rgba(255, 255, 255, 0.5);
+	  border: none;
+      width: 600px;
+      position: fixed;
+      left: 0;
+      height: 100px;
+      box-shadow: none;
+      background: none;
+      font-size: 38px;
+      outline: none;
+      background: rgba(255, 255, 255, 0.5);
+      top: 0;
+  }
+
+	#suggestions {
+        position: fixed;
+        width: 600px;
+        left: 0;
+        top: 100px;
+		max-height: 500px;
+		    overflow: auto;
+
+	  .suggestion {
+		 padding: 15px;
+		 height: 70px;
+
+		 img, h1 {
+			 float: left;
+		 }
+
+		 img {
+			 width: 70px;
+			 height: 70px;
+		 }
+	  }
   }
 }
 
