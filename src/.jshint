@@ -1,0 +1,21 @@
+{
+  "curly": true,
+  "eqeqeq": true,
+  "immed": true,
+  "latedef": true,
+  "newcap": true,
+  "noarg": true,
+  "sub": true,
+  "undef": true,
+  "unused": true,
+  "boss": true,
+  "eqnull": true,
+  "node": true,
+  "esversion": 6,
+  "browser" : true,
+  "maxdepth": 3,
+  "globals": {
+      "$": false,
+      "m8": false
+  }
+}
