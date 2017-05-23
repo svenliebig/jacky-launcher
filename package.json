@@ -1,6 +1,6 @@
 {
   "name": "jacky-launcher",
-  "version": "0.1.20",
+  "version": "0.1.21",
   "description": "jacky-launcher is supposed to be an JavaScript cross-platform Launcher. Like Launchy for Windows and Alfred 2 for Mac OS. I want to get jacky as comfortable as possible and with a easy way to implement own NodeJS Plugins.",
   "main": "app/background.js",
   "scripts": {
