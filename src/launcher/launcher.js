@@ -1,5 +1,7 @@
 import { globalShortcut } from 'electron';
 import { Suggestion } from './suggestion';
+import { Action } from './action';
+import env from '../env';
 
 const { remote } = require('electron');
 
@@ -31,6 +33,18 @@ const KEY_ALT_LEFT = 18;
 
 const KEY_MACOS_CMD_LEFT = 91;
 const KEY_MACOS_CMD_RIGHT = 93;
+
+let openOptions = new Action(['options', 'preferences'], () => {
+    const app = remote.app;
+    remote.getGlobal('logger').info('Action - Options - Triggered');
+    app.options.show();
+
+	if (env.name === 'development') {
+		app.options.openDevTools();
+	}
+});
+
+let actionsArray = [openOptions];
 
 export class Launcher {
 
@@ -149,7 +163,15 @@ export class Launcher {
 			this.exit();
 		} else if(val.match(ONE)) {
 			this.oneTest();
-		}
+		} else {
+            for (var i = 0; i < actionsArray.length; i++) {
+        		this.log.debug(`Launcher - actionsArray[${i}]`, { index: actionsArray[i] });
+                if(actionsArray[i].trigger.indexOf(val) >= 0) {
+            		this.log.debug(`Launcher - actionsArray[${i}].trigger.indexOf(${val})`, { result: actionsArray[i].trigger.indexOf(val) >= 0 });
+                    actionsArray[i].action();
+                }
+            }
+        }
 	}
 
 	exit() {

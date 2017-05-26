@@ -8,7 +8,8 @@ import path from 'path';
 import url from 'url';
 import {
 	app,
-	Menu
+	Menu,
+	BrowserWindow
 } from 'electron';
 import {
 	devMenuTemplate
@@ -24,7 +25,7 @@ const setApplicationMenu = () => {
 	if (env.name !== 'production') {
 		menus.push(devMenuTemplate);
 	}
-	Menu.setApplicationMenu(Menu.buildFromTemplate(menus));
+	Menu.setApplicationMenu(Menu.buildFromTemplate([]));
 };
 
 // Save userData in separate folders for each environment.
@@ -38,7 +39,7 @@ if (env.name !== 'production') {
 app.on('ready', () => {
 	setApplicationMenu();
 
-	let mainWindow = createWindow('main', {
+	let launcherWindow = createWindow('main', {
 		width: 600,
 		height: 100,
 		frame: false,
@@ -47,26 +48,43 @@ app.on('ready', () => {
 		transparent: true,
 		movable: true,
 		resizable: false,
-		alwaysOnTop: true
+		alwaysOnTop: true,
+		backgroundColor: '#2e2c29'
 		// macos
 		//titleBarStyle: 'hidden-inset'
 	});
 
-	mainWindow.loadURL(url.format({
+	let optionsWindow = new BrowserWindow({
+		width: 600,
+		height: 600,
+		parent: launcherWindow,
+		show: false,
+		autoHideMenuBar: true,
+		title: 'Preferences'
+	});
+
+	optionsWindow.loadURL(url.format({
+		pathname: path.join(__dirname, 'options.html'),
+		protocol: 'file:',
+		slashes: true,
+	}));
+
+	launcherWindow.loadURL(url.format({
 		pathname: path.join(__dirname, 'app.html'),
 		protocol: 'file:',
 		slashes: true,
 	}));
 
-	mainWindow.on('blur', () => {
+	launcherWindow.on('blur', () => {
 		global.logger.info("window - blur()");
-		mainWindow.hide();
+		launcherWindow.hide();
 	});
 
-	app.window = mainWindow;
+	app.window = launcherWindow;
+	app.options = optionsWindow;
 
 	if (env.name === 'development') {
-		mainWindow.openDevTools();
+		launcherWindow.openDevTools();
 	}
 });
 
