@@ -5,3 +5,36 @@ html {
 	margin: 0;
 	padding: 0;
 }
+
+.container {
+	display: flex;
+	flex-direction: column;
+	height: calc(100% ~"-" 10px);
+	padding: 5px;
+
+	.tab-wrapper {
+		.tab-container {
+			width: 100%;
+			min-width: 400px;
+			overflow: auto;
+
+			.tab-button {
+				border-top-left-radius: 5px;
+				border-top-right-radius: 5px;
+				border: 1px solid grey;
+				border-bottom: none;
+				display: inline-block;
+				text-align: center;
+				padding: 5px;
+			}
+
+			.tab-content {
+
+			}
+		}
+	}
+
+	.footer-container {
+		align-self: flex-end;
+	}
+}

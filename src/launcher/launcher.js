@@ -161,11 +161,9 @@ export class Launcher {
 		this.log.debug("Launcher - executeQuery(val)", { val: val });
 		if(val.match(EXIT)) {
 			this.exit();
-		} else if(val.match(ONE)) {
-			this.oneTest();
 		} else {
             for (var i = 0; i < actionsArray.length; i++) {
-        		this.log.debug(`Launcher - actionsArray[${i}]`, { index: actionsArray[i] });
+        		this.log.debug(`Launcher - actionsArray[${i}]`);
                 if(actionsArray[i].trigger.indexOf(val) >= 0) {
             		this.log.debug(`Launcher - actionsArray[${i}].trigger.indexOf(${val})`, { result: actionsArray[i].trigger.indexOf(val) >= 0 });
                     actionsArray[i].action();

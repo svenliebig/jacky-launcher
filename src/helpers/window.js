@@ -24,7 +24,7 @@ export default(name, options) => {
 		} catch (err) {
 			// For some reason json can't be read (might be corrupted).
 			// No worries, we have defaults.
-			global.logger.eror('window - state could not restore state');
+			global.logger.error('window - state could not restore state');
 		}
 		return Object.assign({}, defaultSize, restoredState);
 	};
